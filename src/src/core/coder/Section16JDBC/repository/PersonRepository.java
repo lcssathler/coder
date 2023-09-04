@@ -95,4 +95,16 @@ public class PersonRepository {
         }
         return personList;
     }
+
+    public static void updatePerson(Person person) {
+        String sql = "UPDATE person SET name = ? WHERE code = ?;";
+        try (Connection conn = ConnectionJDBC.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setString(1, person.getName());
+            preparedStatement.setInt(2, person.getCode());
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

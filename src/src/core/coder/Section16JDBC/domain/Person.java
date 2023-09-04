@@ -16,4 +16,12 @@ public class Person {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

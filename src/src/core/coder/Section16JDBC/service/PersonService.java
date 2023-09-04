@@ -1,8 +1,12 @@
 package core.coder.Section16JDBC.service;
 
+import core.coder.Section16JDBC.domain.ConnectionJDBC;
 import core.coder.Section16JDBC.domain.Person;
 import core.coder.Section16JDBC.repository.PersonRepository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -29,6 +33,7 @@ public class PersonService {
         scanner.close();
         return PersonRepository.findByName(name);
     }
+
     public static List<Person> findByCode() {
         Scanner scanner = new Scanner(System.in);
 
@@ -37,5 +42,10 @@ public class PersonService {
 
         scanner.close();
         return PersonRepository.findByCode(code);
+    }
+
+    public static void updatePerson(Person person) {
+        PersonRepository.updatePerson(person);
+        System.out.println("Person "+ person.getCode() + " updated successfully");
     }
 }
