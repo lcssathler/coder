@@ -45,4 +45,54 @@ public class PersonRepository {
         }
         return personList;
     }
+
+    public static List<Person> findByCode(int code) {
+        List<Person> personList = new ArrayList<>();
+        String sql = "SELECT * FROM person WHERE code = ?;";
+
+        try (Connection conn = ConnectionJDBC.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, code);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int codeDB = resultSet.getInt("code");
+                String nameDB = resultSet.getString("name");
+                Person personDB = PersonBuilder.builder()
+                        .code(codeDB)
+                        .name(nameDB)
+                        .build();
+                personList.add(personDB);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return personList;
+    }
+
+    public static List<Person> findByName(String name) {
+        List<Person> personList = new ArrayList<>();
+        String sql = "SELECT * FROM person WHERE name = ?;";
+
+        try (Connection conn = ConnectionJDBC.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, String.format(name, "%%%s%%"));
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int codeDB = resultSet.getInt("code");
+                String nameDB = resultSet.getString("name");
+                Person personDB = PersonBuilder.builder()
+                        .code(codeDB)
+                        .name(nameDB)
+                        .build();
+                personList.add(personDB);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return personList;
+    }
 }

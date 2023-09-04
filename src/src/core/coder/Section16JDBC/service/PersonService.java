@@ -19,4 +19,23 @@ public class PersonService {
     public static List<Person> findAllPerson() {
         return PersonRepository.findAllPerson();
     }
+
+    public static List<Person> findByName() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input a name to find person: ");
+        String name = scanner.nextLine();
+
+        scanner.close();
+        return PersonRepository.findByName(name);
+    }
+    public static List<Person> findByCode() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input a code to find person: ");
+        int code = Integer.parseInt(scanner.nextLine());
+
+        scanner.close();
+        return PersonRepository.findByCode(code);
+    }
 }

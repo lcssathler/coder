@@ -9,9 +9,13 @@ public class CrudTest01 {
     public static void main(String[] args) {
 //        PersonService.insertPerson();
 
-        List<Person> personList = PersonService.findAllPerson();
-        for (Person person : personList) {
-            System.out.println(person);
-        }
+//        List<Person> personList = PersonService.findAllPerson();
+//        for (Person person : personList) {
+//            System.out.println(person);
+//        }
+
+//        System.out.println(PersonService.findByName());
+
+        System.out.println(PersonService.findByCode());
     }
 }
