@@ -22,6 +22,13 @@
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="458d9108-0be2-4376-b90f-64d82226320b" dataset="java_coder.person" active-filter-id="7bf70587-16e2-4958-819f-d85359359d4b">
+      <filter id="7bf70587-16e2-4958-819f-d85359359d4b" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="code" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
