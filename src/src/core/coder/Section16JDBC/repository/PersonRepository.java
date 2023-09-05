@@ -97,12 +97,20 @@ public class PersonRepository {
     }
 
     public static void updatePerson(Person person) {
-        String sql = "UPDATE person SET name = ? WHERE code = ?;";
+        String select = "SELECT code, name FROM person WHERE code = ?";
+        String update = "UPDATE person SET name = ? WHERE code = ?;";
         try (Connection conn = ConnectionJDBC.getConnection();
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setString(1, person.getName());
-            preparedStatement.setInt(2, person.getCode());
-            preparedStatement.execute();
+             PreparedStatement preparedStatementSelect = conn.prepareStatement(select)) {
+
+            preparedStatementSelect.setInt(1, person.getCode());
+            ResultSet result = preparedStatementSelect.executeQuery();
+            result.next();
+            System.out.println("Current person name is: " + result.getString("name"));
+
+            PreparedStatement preparedStatementUpdate = conn.prepareStatement(update);
+            preparedStatementUpdate.setString(1, person.getName());
+            preparedStatementUpdate.setInt(2, person.getCode());
+            preparedStatementUpdate.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
