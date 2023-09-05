@@ -44,4 +44,9 @@ public class PersonService {
         PersonRepository.updatePerson(person);
         System.out.println("Person "+ person.getCode() + " updated successfully");
     }
+
+    public static void deleteById(Person person) {
+        PersonRepository.deleteById(person);
+        System.out.printf("Person '%d' deleted from database%n", person.getCode());
+    }
 }

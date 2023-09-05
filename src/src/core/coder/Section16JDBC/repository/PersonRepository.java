@@ -115,4 +115,16 @@ public class PersonRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public static void deleteById(Person person) {
+        String sql = "DELETE FROM person WHERE code = ?;";
+        try (Connection conn = ConnectionJDBC.getConnection();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setInt(1, person.getCode());
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

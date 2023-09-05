@@ -17,7 +17,9 @@ public class CrudTest01 {
 
 //        System.out.println(PersonService.findByCode());
 
-        Person person = PersonBuilder.builder().code(10).name("LUCAS!").build();
-        PersonService.updatePerson(person);
+        Person person = PersonBuilder.builder().code(11).name("LUCAS!").build();
+//        PersonService.updatePerson(person);
+
+        PersonService.deleteById(person);
     }
 }
